@@ -161,7 +161,7 @@ export default async function ctxUtilsMw(ctx: CtxWithVars, next: Next) {
 
         //Setting up legacy theme
         let legacyTheme = '';
-        const themeCookie = ctx.cookies.get('txAdmin-theme');
+        const themeCookie = ctx.cookies.get(consts.cookies.theme);
         if (!themeCookie || themeCookie === 'dark' || !isWebInterface) {
             legacyTheme = 'theme--dark';
         } else {

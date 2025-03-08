@@ -161,7 +161,7 @@ export default async function getReactIndex(ctx: CtxWithVars | AuthedCtx) {
     }
 
     //Setting the theme class from the cookie
-    const themeCookie = ctx.cookies.get('txAdmin-theme');
+    const themeCookie = ctx.cookies.get(consts.cookies.theme);
     if (themeCookie) {
         if (tmpDefaultThemes.includes(themeCookie)) {
             replacers.htmlClasses = themeCookie;
