@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { dequal } from 'dequal/lite';
 import { GetConfigsResp, PartialTxConfigs, TxConfigs } from "@shared/otherTypes";
 

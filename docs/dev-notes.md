@@ -354,7 +354,6 @@ https://tailwindcss.com/blog/automatic-class-sorting-with-prettier
     - [ ] if socket connects but no data received, add a warning to the console and wipe it after first write
     - [ ] persistent cls via ts offsets
     - [ ] improve the bufferization to allow just loading most recent "block" and loading prev blocks via button
-    - [ ] options dropdown?
     - [ ] console nav button to jump to server start or errors? 
         - Or maybe filter just error lines (with margin)
         - Or maybe even detect all channels and allow you to filter them, show dropdown sorted by frequency
