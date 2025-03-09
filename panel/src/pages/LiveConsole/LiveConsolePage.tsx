@@ -88,6 +88,7 @@ export default function LiveConsolePage() {
         prefix: defaultTermPrefix,
     });
     const refreshPage = useContentRefresh();
+    const isDarkTheme = useIsDarkMode();
 
     //FIXME: maybe use atomWithStorage
     const consoleOptions: LiveConsoleOptions = useMemo(() => {
@@ -105,7 +106,10 @@ export default function LiveConsolePage() {
      */
     const jumpBottomBtnRef = useRef<HTMLButtonElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const term = useMemo(() => new Terminal(terminalOptions), []);
+    const term = useMemo(() => new Terminal({
+        ...xtermOptions,
+        theme: isDarkTheme ? darkThemeColors : lightThemeColors,
+    }), []);
     const fitAddon = useMemo(() => new FitAddon(), []);
     const searchAddon = useMemo(() => new SearchAddon(), []);
     const termLinkHandler = (event: MouseEvent, uri: string) => {
@@ -134,6 +138,14 @@ export default function LiveConsolePage() {
         }
     }
     useEventListener('resize', debounce(100, refitTerminal));
+
+    useEffect(() => {
+        if (term.element) {
+            term.options.theme = isDarkTheme ? darkThemeColors : lightThemeColors;
+            term.refresh(0, term.rows - 1);
+            refitTerminal();
+        }
+    }, [term, isDarkTheme]);
 
     useEffect(() => {
         if (containerRef.current && jumpBottomBtnRef.current && !term.element) {
@@ -281,21 +293,17 @@ export default function LiveConsolePage() {
             }
 
             //Check if it's last line, and if the EOL was stripped
-            const prefixColor = isNewTs ? ANSI.WHITE : ANSI.GRAY;
+            const prefixColor = isNewTs ? ANSI.TS_STRONG : ANSI.TS_WEAK;
             const prefix = termPrefixRef.current.lastEol
                 ? prefixColor + termPrefixRef.current.prefix
                 : '';
-            if (i < lines.length - 1) {
-                term.writeln(prefix + line, writeCallback);
+            const prefixedLine = prefix + line;
+            if (i < lines.length - 1 || wasEolStripped) {
+                term.writeln(prefixedLine, writeCallback);
                 termPrefixRef.current.lastEol = true;
             } else {
-                if (wasEolStripped) {
-                    term.writeln(prefix + line, writeCallback);
-                    termPrefixRef.current.lastEol = true;
-                } else {
-                    term.write(prefix + line, writeCallback);
-                    termPrefixRef.current.lastEol = false;
-                }
+                term.write(prefixedLine, writeCallback);
+                termPrefixRef.current.lastEol = false;
             }
         }
     }
@@ -388,7 +396,7 @@ export default function LiveConsolePage() {
         term.clear();
         searchAddon.clearDecorations();
         setShowSearchBar(false);
-        term.write(`${ANSI.YELLOW}[console cleared]${ANSI.RESET}\n`);
+        term.write(`${ANSI.ORANGE}[console cleared]${ANSI.RESET}\n`);
     }
     const toggleSearchBar = () => {
         setShowSearchBar(!showSearchBar);
@@ -406,7 +414,7 @@ export default function LiveConsolePage() {
 
 
     return (
-        <div className="dark text-primary flex flex-col h-contentvh w-full bg-card border md:rounded-xl overflow-clip">
+        <div className="text-primary flex flex-col h-contentvh w-full bg-card border md:rounded-xl overflow-clip">
             <LiveConsoleHeader />
 
             <div className="flex flex-col relative grow overflow-hidden">

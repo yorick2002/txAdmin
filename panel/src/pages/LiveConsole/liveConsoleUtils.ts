@@ -1,14 +1,6 @@
 import { copyToClipboard } from "@/lib/utils";
 import { LiveConsoleOptions } from "./LiveConsolePage";
-
-
-//ANSII escape codes
-export const ANSI = {
-    WHITE: '\x1B[0;37m',
-    GRAY: '\x1B[1;90m',
-    YELLOW: '\x1B[0;33m',
-    RESET: '\x1B[0m',
-} as const;
+import { ANSI } from "./liveConsoleColors";
 
 
 //Yoinked from core/modules/Logger/FXServerLogger/index.ts

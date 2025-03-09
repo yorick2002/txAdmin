@@ -24,8 +24,7 @@ const baseTheme: ITheme = {
     brightWhite: '#FFFFFF',
 };
 
-const terminalOptions: ITerminalOptions | ITerminalInitOnlyOptions = {
-    theme: baseTheme,
+export const xtermOptions: ITerminalOptions | ITerminalInitOnlyOptions = {
     convertEol: true,
     cursorBlink: true,
     cursorStyle: 'bar',
@@ -53,4 +52,4 @@ const terminalOptions: ITerminalOptions | ITerminalInitOnlyOptions = {
     - light mode?
     - whether clicking on a saved command copies it to the input or executes it directly
 */
-export default terminalOptions;
+export default xtermOptions;
