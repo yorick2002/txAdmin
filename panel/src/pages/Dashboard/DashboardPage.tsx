@@ -41,7 +41,7 @@ function DashboardPageInner() {
 
     return (
         <div className="w-full min-w-96 flex flex-col gap-4">
-            <div className="w-full grid grid-cols-3 2xl:grid-cols-8 gap-4">
+            <div className="w-full grid grid-cols-3 3xl:grid-cols-8 gap-4">
                 <PlayerDropCard />
                 <ServerStatsCard />
                 <ThreadPerfCard />
