@@ -23,7 +23,6 @@ export default function TestingPage() {
     // }, []);
 
     return <div className="flex flex-col gap-4 w-full">
-        <TmpFiller />
         {/* <TmpTestTables /> */}
         {/* <TmpApi /> */}
         {/* <TmpToasts /> */}
@@ -39,5 +38,6 @@ export default function TestingPage() {
         </div> */}
         {/* <TmpJsonEditor /> */}
         {/* <TmpPageHeader /> */}
+        {/* <TmpFiller /> */}
     </div>;
 }

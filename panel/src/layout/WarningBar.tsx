@@ -58,12 +58,12 @@ export function InnerWarningBar({ titleIcon, title, description, isImportant, ca
     return (
         <div className='fixed top-navbarvh w-full flex justify-center z-40'>
             <div className={cn(
-                "w-full sm:w-[28rem] h-9 hover:h-32 overflow-hidden sm:rounded-b-md",
-                "flex flex-col justify-center items-center p-2",
+                "w-full sm:w-[28rem] min-h-9 hover:min-h-32 overflow-hidden sm:rounded-b-md",
+                "flex flex-col justify-center items-center p-1",
                 "group cursor-default transition-[height] shadow-xl",
                 isImportant ? 'bg-destructive text-destructive-foreground' : 'bg-info text-info-foreground'
             )}>
-                <h2 className="text-md group-hover:font-medium">
+                <h2 className="text-md text-center group-hover:font-medium">
                     {titleIcon}
                     {title}
                 </h2>
