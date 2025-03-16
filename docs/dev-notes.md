@@ -232,6 +232,7 @@ Legend:
     - [ref](/core/playerLogic/playerClasses.ts#L281)
     - [ ] create simple page to list top 100 players by playtime in the last 30d, 14d, 7d, yesterday, today
     - if storing in a linear UInt16Array, 100k players * 120d * 4bytes per date = 48mb
+- [ ] on migration, sort all the actions and players, due to the search sorting bug
 
 
 
