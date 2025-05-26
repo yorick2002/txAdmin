@@ -64,14 +64,6 @@ export function ServerSidebar({ isSheet }: ServerSidebarProps) {
                         &nbsp;|
                         fx: <strong>b{window.txConsts.fxsVersion}</strong>
                     </span>
-                    <a
-                        href="https://github.com/tabarra/txAdmin/blob/master/LICENSE"
-                        onClick={handleExternalLinkClick}
-                        target="_blank"
-                        className='text-muted-foreground hover:text-accent'
-                    >
-                        &copy; 2019-{(new Date).getUTCFullYear()} Tabarra
-                    </a>
                 </div>
             ) : null}
         </aside>
