@@ -20,10 +20,14 @@ import {
   DeleteForever,
   RocketLaunch,
   AirlineStops,
+  WbSunny,
+  Bedtime,
+  Landscape,
   // Stream //Spawn Weapon action
 } from "@mui/icons-material";
 import { useKeyboardNavigation } from "../../hooks/useKeyboardNavigation";
 import { useDialogContext } from "../../provider/DialogProvider";
+import { useEnvironmentDialogContext } from "../../provider/EnvironmentDialogProvider";
 import { fetchNui } from "../../utils/fetchNui";
 import { useTranslate } from "react-polyglot";
 import { useSnackbar } from "notistack";
@@ -31,6 +35,7 @@ import { PlayerMode, usePlayerMode } from "../../state/playermode.state";
 import { useIsMenuVisibleValue } from "../../state/visibility.state";
 import { TeleportMode, useTeleportMode } from "../../state/teleportmode.state";
 import { HealMode, useHealMode } from "../../state/healmode.state";
+import { TimeMode, useTimeMode } from "../../state/time.state";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 import { useServerCtxValue } from "../../state/server.state";
 import { VehicleMode, useVehicleMode } from "../../state/vehiclemode.state";
@@ -74,6 +79,7 @@ const StyledList = styled(List)({
 // TODO: This component is kinda getting out of hand, might want to split it somehow
 export const MainPageList: React.FC = () => {
   const { openDialog } = useDialogContext();
+  const { openEnvironmentDialog } = useEnvironmentDialogContext();
   const [curSelected, setCurSelected] = useState(0);
   const t = useTranslate();
   const { enqueueSnackbar } = useSnackbar();
@@ -81,6 +87,7 @@ export const MainPageList: React.FC = () => {
   const [teleportMode, setTeleportMode] = useTeleportMode();
   const [vehicleMode, setVehicleMode] = useVehicleMode();
   const [healMode, setHealMode] = useHealMode();
+  const [timeMode, setTimeMode] = useTimeMode();
   const serverCtx = useServerCtxValue();
   const menuVisible = useIsMenuVisibleValue();
   const isRedm = useIsRedmValue()
@@ -297,6 +304,10 @@ export const MainPageList: React.FC = () => {
     handleClearArea(true);
   });
 
+  const handleEnvironmentSettings = (autoClose = false) => {
+    openEnvironmentDialog();
+  };
+
   const handleTogglePlayerIds = () => {
     fetchNui("togglePlayerIDs");
   };
@@ -488,6 +499,15 @@ export const MainPageList: React.FC = () => {
         ],
       },
 
+      // ENVIRONMENT SETTINGS
+      {
+        title: t("nui_menu.page_main.environmental.title"),
+        label: t("nui_menu.page_main.environmental.label"),
+        requiredPermission: "menu.environment",
+        icon: <Landscape />,
+        onSelect: handleEnvironmentSettings,
+      },
+
       //MISC
       {
         title: t("nui_menu.page_main.announcement.title"),
@@ -516,7 +536,7 @@ export const MainPageList: React.FC = () => {
       //   onSelect: handleSpawnWeapon,
       // },
     ],
-    [playerMode, teleportMode, vehicleMode, healMode, serverCtx, isRedm]
+    [playerMode, teleportMode, vehicleMode, healMode, timeMode, serverCtx, isRedm]
   );
 
   return (
