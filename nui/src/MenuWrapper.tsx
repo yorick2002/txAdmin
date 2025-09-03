@@ -12,6 +12,7 @@ import { useServerCtxValue } from "./state/server.state";
 import { WarnPage } from "./components/WarnPage/WarnPage";
 import { IFrameProvider } from "./provider/IFrameProvider";
 import { PlayerModalProvider } from "./provider/PlayerModalProvider";
+import { EnvironmentDialogProvider } from "./provider/EnvironmentDialogProvider";
 import { txAdminMenuPage, useSetPage } from "./state/page.state";
 import { useListenerForSomething } from "./hooks/useListenerForSomething";
 import {
@@ -91,19 +92,21 @@ const MenuWrapper: React.FC = () => {
         <>
           <IFrameProvider>
             <DialogProvider>
-              <PlayerModalProvider>
-                <TooltipProvider>
-                  <Box
-                    id="menu-root"
-                    className="App"
-                    sx={{
-                      opacity: visible ? 1 : 0,
-                    }}
-                  >
-                    <MenuRoot />
-                  </Box>
-                </TooltipProvider>
-              </PlayerModalProvider>
+              <EnvironmentDialogProvider>
+                <PlayerModalProvider>
+                  <TooltipProvider>
+                    <Box
+                      id="menu-root"
+                      className="App"
+                      sx={{
+                        opacity: visible ? 1 : 0,
+                      }}
+                    >
+                      <MenuRoot />
+                    </Box>
+                  </TooltipProvider>
+                </PlayerModalProvider>
+              </EnvironmentDialogProvider>
             </DialogProvider>
           </IFrameProvider>
           <WarnPage />
