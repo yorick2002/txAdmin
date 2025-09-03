@@ -24,6 +24,7 @@ export type ResolvablePermission =
   | "server.log.view"
   | "menu.vehicle"
   | "menu.clear_area"
+  | "menu.environment"
   | "menu.viewids"
   | "players.spectate"
   | "players.troll"
