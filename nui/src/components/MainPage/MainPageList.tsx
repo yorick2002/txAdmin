@@ -35,7 +35,6 @@ import { PlayerMode, usePlayerMode } from "../../state/playermode.state";
 import { useIsMenuVisibleValue } from "../../state/visibility.state";
 import { TeleportMode, useTeleportMode } from "../../state/teleportmode.state";
 import { HealMode, useHealMode } from "../../state/healmode.state";
-import { TimeMode, useTimeMode } from "../../state/time.state";
 import { copyToClipboard } from "../../utils/copyToClipboard";
 import { useServerCtxValue } from "../../state/server.state";
 import { VehicleMode, useVehicleMode } from "../../state/vehiclemode.state";
@@ -87,7 +86,6 @@ export const MainPageList: React.FC = () => {
   const [teleportMode, setTeleportMode] = useTeleportMode();
   const [vehicleMode, setVehicleMode] = useVehicleMode();
   const [healMode, setHealMode] = useHealMode();
-  const [timeMode, setTimeMode] = useTimeMode();
   const serverCtx = useServerCtxValue();
   const menuVisible = useIsMenuVisibleValue();
   const isRedm = useIsRedmValue()
@@ -536,7 +534,7 @@ export const MainPageList: React.FC = () => {
       //   onSelect: handleSpawnWeapon,
       // },
     ],
-    [playerMode, teleportMode, vehicleMode, healMode, timeMode, serverCtx, isRedm]
+    [playerMode, teleportMode, vehicleMode, healMode, serverCtx, isRedm]
   );
 
   return (
