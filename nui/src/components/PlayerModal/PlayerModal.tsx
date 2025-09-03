@@ -172,7 +172,7 @@ const DialogTab: React.FC<DialogTabProps> = ({
 const DialogList: React.FC = () => {
   const curTab = usePlayerModalTabValue();
   const t = useTranslate();
-  const playerPerms = usePermissionsValue() || [];
+  const playerPerms = usePermissionsValue();
 
   return (
     <StyledList>
